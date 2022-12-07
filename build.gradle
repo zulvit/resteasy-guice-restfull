@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id("nu.studer.jooq") version "7.0"
 }
 
 group 'ru.zulvit'
@@ -9,9 +10,40 @@ repositories {
     mavenCentral()
 }
 
+ext {
+    jettyVersion = "9.4.33.v20201020"
+    restEasyVersion = "4.5.8.Final"
+}
+
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    implementation 'org.jetbrains:annotations:23.0.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
+
+    implementation group: 'org.jboss.resteasy', name: 'resteasy-guice', version: restEasyVersion
+    implementation group: 'org.jboss.resteasy', name: 'resteasy-jackson2-provider', version: restEasyVersion
+
+    implementation group: 'org.eclipse.jetty', name: 'jetty-server', version: jettyVersion
+    implementation group: 'org.eclipse.jetty', name: 'jetty-servlet', version: jettyVersion
+
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.13.0'
+
+    implementation group: 'com.google.inject', name: 'guice', version: '4.2.2'
+    implementation group: 'com.google.inject.extensions', name: 'guice-servlet', version: '4.2.2'
+
+    implementation group: 'org.glassfish.hk2', name: 'guice-bridge', version: '2.6.0'
+
+    implementation group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'
+    implementation group: 'javax.ws.rs', name: 'javax.ws.rs-api', version: '2.1.1'
+
+    // https://mvnrepository.com/artifact/org.flywaydb/flyway-core
+    implementation 'org.flywaydb:flyway-core:9.8.3'
+    // https://mvnrepository.com/artifact/org.postgresql/postgresql
+    implementation 'org.postgresql:postgresql:42.5.1'
+    // https://mvnrepository.com/artifact/org.jooq/jooq
+    implementation 'org.jooq:jooq:3.17.5'
+    implementation 'org.jooq:jooq-codegen:3.17.5'
+    implementation 'org.jooq:jooq-meta:3.17.5'
 }
 
 test {
